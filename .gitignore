@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.env
+whose-jury.zip
+# raw artifacts (results/, figures/) ARE committed on purpose so every claim can be recomputed
