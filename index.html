@@ -117,8 +117,9 @@ footer{padding:12vh 8%; border-top:1px solid var(--line)}
 
 <section class="statement">
   <div class="reveal"><div class="lab">Finding 1</div>
-  <h2>Models soften atrocities by the US and its allies</h2>
-  <p>Each bar below is the same act: an airstrike that killed civilians. Only the country responsible changes. A higher bar means the model was more evasive, through hedging, false balance, or leaving the killing out.</p></div>
+  <h2>In this corpus, models hedged more when the US or an ally was responsible</h2>
+  <p>Each bar below is the same act: an airstrike that killed civilians. Only the country responsible changes. A higher bar means the model was more evasive, through hedging, false balance, or leaving the killing out.</p>
+  <p>These are descriptive averages, not a causal result: the placebo control moved as well (see Limitations).</p></div>
 
   <div class="chartwrap reveal">
     <div class="toggle" id="acttoggle">
@@ -151,14 +152,15 @@ footer{padding:12vh 8%; border-top:1px solid var(--line)}
 <section class="statement reveal">
   <div class="lab">Finding 3</div>
   <h2>Hostile questions produce more evasion</h2>
-  <p class="takeaway">A neutral question produced a direct answer. A probing or challenging question produced far more hedging. This held across every model.</p>
+  <p class="takeaway">A neutral question produced a direct answer. A probing or challenging question produced far more hedging, on average across the six models.</p>
 </section>
 
 <section class="reveal">
   <div class="lab">Limitations</div>
   <h2>What this does not show</h2>
   <ul class="limits">
-    <li>The swap test did not pass its own control, so the results here rely on the matched comparison instead.</li>
+    <li>The swap test did not pass its own control: placebo scenarios moved too (difference-in-differences 0.335), so the country pattern is an association in this corpus, not an identified effect.</li>
+    <li>In the mixed-effects model, the main country-label effect is not significant (p = 0.085); it depends on how the question is framed.</li>
     <li>The adversary airstrike sample is small, at two incidents.</li>
     <li>The incidents are not yet matched for prominence. A famous strike attracts more coverage than an obscure one.</li>
   </ul>
@@ -167,7 +169,7 @@ footer{padding:12vh 8%; border-top:1px solid var(--line)}
 
 <section class="reveal">
   <div class="lab">Results</div>
-  <div class="stat"><div class="k">2.28 / 1.06</div><div class="v">Average evasiveness for allied and own-side atrocities, versus an adversary's, on the same act. Pooled p = 0.005.</div></div>
+  <div class="stat"><div class="k">+1.72</div><div class="v">Extra evasiveness on allied and own-side airstrikes compared with an adversary's (2.70 and 1.92 vs 0.59). Descriptive; two adversary incidents.</div></div>
   <div class="stat"><div class="k">0.74</div><div class="v">Agreement between the five judges (Krippendorff's alpha).</div></div>
   <div class="stat"><div class="k">0.0</div><div class="v">Rank correlation between the American and European juries.</div></div>
 </section>
@@ -195,9 +197,9 @@ const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.ta
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const ACTS={
-  airstrike:{note:"The models described Russia's strike directly. They hedged the United States' strike. p = 0.01.",
+  airstrike:{note:"The models described Russia's strike directly. They hedged the United States' strike. Only two adversary incidents.",
     bars:[{k:'adversary',who:'Russia',tag:'adversary',v:0.59},{k:'ally',who:'Israel · Saudi',tag:'ally',v:1.92},{k:'self',who:'United States',tag:'own side',v:2.70}]},
-  detention:{note:"Same pattern. China's detentions were described directly, Guantánamo was hedged. p = 0.10.",
+  detention:{note:"Same pattern. China's detentions were described directly, Guantánamo was hedged, by a smaller margin.",
     bars:[{k:'adversary',who:'China',tag:'adversary',v:1.38},{k:'ally',who:'India · Australia',tag:'ally',v:2.27},{k:'self',who:'United States',tag:'own side',v:2.33}]},
   crackdown:{note:"No difference here. Iran and the US-allied governments were treated the same.",
     bars:[{k:'adversary',who:'Iran',tag:'adversary',v:1.26},{k:'ally',who:'Egypt · Bahrain · Kenya',tag:'ally',v:1.28}]}
